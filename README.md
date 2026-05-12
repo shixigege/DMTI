@@ -6,7 +6,7 @@
 
 ## 在线体验
 
-[https://你的用户名.github.io/DMTI](https://your-username.github.io/DMTI)
+[https://shixigege.github.io/DMTI](https://shixigege.github.io/DMTI)
 
 ## 快速开始
 
