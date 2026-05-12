@@ -39,7 +39,7 @@ const IMG_EXTS = ['.jpg', '.jpeg', '.png', '.webp'];
 function CharacterAvatar({ character }) {
   const [extIdx, setExtIdx] = useState(0);
   const [imgError, setImgError] = useState(false);
-  const imgSrc = `/characters/${character.name}${IMG_EXTS[extIdx]}`;
+  const imgSrc = `${import.meta.env.BASE_URL}characters/${character.name}${IMG_EXTS[extIdx]}`;
 
   const handleError = () => {
     if (extIdx < IMG_EXTS.length - 1) {
