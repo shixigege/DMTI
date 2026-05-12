@@ -27,7 +27,7 @@ function Toast({ show }) {
           exit={{ opacity: 0, y: 40 }}
           className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 px-6 py-3 bg-ming-ink text-ming-cream rounded-sm shadow-lg border border-ming-gold/30 text-sm font-bold tracking-wider"
         >
-          已复制到剪贴板，快去分享给朋友吧
+          结果已复制，快去分享给朋友吧
         </motion.div>
       )}
     </AnimatePresence>
@@ -87,16 +87,20 @@ export default function ResultPage({ result, onRestart }) {
   const { avgScores, closestCharacter } = result;
   const [showToast, setShowToast] = useState(false);
 
+  const shareUrl = 'https://shixigege.github.io/DMTI/';
+
   const handleShare = () => {
-    const shareText = `我的大明人格测试结果：\n\n${closestCharacter.name} - ${closestCharacter.title}\n"${closestCharacter.quote}"\n\n📊 维度得分：\n支配: ${avgScores.dominance.toFixed(1)}\n道义: ${avgScores.morality.toFixed(1)}\n谋略: ${avgScores.strategy.toFixed(1)}\n忠诚: ${avgScores.loyalty.toFixed(1)}\n\n👉 快来测试你的大明人格！`;
+    const shareText = `我的大明人格是${closestCharacter.name}（${closestCharacter.title}），你呢？`;
 
     if (navigator.share) {
       navigator.share({
-        title: 'DMTI大明人格测试',
+        title: 'DMTI 大明王朝人格测试',
         text: shareText,
+        url: shareUrl,
       });
     } else {
-      navigator.clipboard.writeText(shareText).then(() => {
+      const copyText = `${shareText}\n${shareUrl}`;
+      navigator.clipboard.writeText(copyText).then(() => {
         setShowToast(true);
         setTimeout(() => setShowToast(false), 2500);
       });
